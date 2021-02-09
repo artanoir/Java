@@ -1,83 +1,93 @@
 public class main {
     public static void main(String[] args) {
 
-        //Java Arithmetic Operators
-        // declare variables
+        // Арифметические операторы Java
+        // объявление переменных
         int a = 12, b = 5;
 
-        // addition operator
+        // оператор сложения
         System.out.println("a + b = " + (a + b));
 
-        // subtraction operator
+        // оператор вычитания
         System.out.println("a - b = " + (a - b));
 
-        // multiplication operator
+        // оператор умножения
         System.out.println("a * b = " + (a * b));
 
-        // division operator
+        // оператор деления
         System.out.println("a / b = " + (a / b));
 
-        // modulo operator
+        // оператор по модулю дает остаток при делении первого операнда на второй
         System.out.println("a % b = " + (a % b));
 
 
-        //Java Assignment Operators
-        // create variables
+        // Операторы присваивания
+        // объявление переменных
         int s = 4;
         int var;
 
-        // assign value using =
+        // присвоение значение с помощью =
         var = s;
         System.out.println("var using =: " + var);
 
-        // assign value using =+
+        // присвоение значение с помощью =+
         var += s;
         System.out.println("var using +=: " + var);
 
-        // assign value using =*
+        // присвоение значение с помощью =*
         var *= s;
         System.out.println("var using *=: " + var);
 
 
-        //Java Relational Operators
-        // create variables
+        // Реляционные операторы Java
+        // объявление переменных
         int y = 7, x = 11;
 
-        // value of a and b
+        // значение у и х
         System.out.println("y is " + y + " and x is " + x);
 
-        // == operator
+        // == 
         System.out.println(y == x);  // false
 
-        // != operator
+        // != 
         System.out.println(y != x);  // true
 
-        // > operator
+        // > 
         System.out.println(y > x);  // false
 
-        // < operator
+        // < 
         System.out.println(y < x);  // true
 
-        // >= operator
+        // >= 
         System.out.println(y >= x);  // false
 
-        // <= operator
+        // <= 
         System.out.println(y <= x);  // true
 
 
-        //Java Logical Operators
-        // && operator
+        // Логические операторы Java
+        // && логическое И 
         System.out.println((5 > 3) && (8 > 5));  // true
         System.out.println((5 > 3) && (8 < 5));  // false
 
-        // || operator
+        // || логическое ИЛИ
         System.out.println((5 < 3) || (8 > 5));  // true
         System.out.println((5 > 3) || (8 < 5));  // true
         System.out.println((5 < 3) || (8 < 5));  // false
 
-        // ! operator
+        // ! логическое отрицание
         System.out.println(!(5 == 3));  // true
         System.out.println(!(5 > 3));  // false
+        
+        /*
+        (5 > 3) && (8 > 5) вернёт true потому что оба (5 > 3) и (8 > 5) правда.
+        (5 > 3) && (8 < 5) вернёт false потому что (8 < 5) не правда.
+        (5 > 3) || (8 > 5) вернёт true потому что (8 > 5) правда.
+        (5 > 3) && (8 > 5) вернёт true потому что (5 > 3) правда.
+        (5 > 3) && (8 > 5) вернёт false потому что оба (5 < 3) и (8 < 5) не правда.
+        !(5 == 3) вернёт true потому что 5 == 3 не правда.
+        !(5 > 3) вернёт false потому что 5 > 3 правда.
+        */
 
 
         //Java Unary Operators
