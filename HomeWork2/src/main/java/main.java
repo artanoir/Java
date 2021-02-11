@@ -19,7 +19,7 @@ public class main {
             System.out.print(arrThree[i] + " ");
         }
 
-        System.out.print("\n");
+        System.out.print("\r\n");
         int[][] arrFour = new int[5][5];
         for (int i = 0; i < arrFour.length; i++) {
             for (int j = 0, j2 = arrFour[i].length; j < arrFour[i].length; j++, j2--) {
