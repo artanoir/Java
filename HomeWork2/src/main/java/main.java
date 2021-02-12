@@ -1,15 +1,5 @@
 public class main {
-    public static void main (String[] args) {
 
-        int[] arrOne = {1, 1, 0, 0, 0, 1, 1, 1, 0, 1};
-        for (int i = 0; i < arrOne.length; i++) {
-            if (arrOne[i] == 1) {
-                arrOne[i] = 0;
-            } else {
-                arrOne[i] = 1;
-            }
-            System.out.print(arrOne[i] + " ");
-        }
 
         System.out.print("\n");
         int[] arrTwo = new int[8];
