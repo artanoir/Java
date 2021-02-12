@@ -6,6 +6,11 @@ public class main {
 
 
 
+
+
+
+
+
         System.out.print("\n");
         int[] arrTwo = new int[8];
         for (int i = 1, j = 0; i < arrTwo.length; i++) arrTwo[i] = j += 3;
