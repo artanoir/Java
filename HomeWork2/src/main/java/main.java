@@ -2,10 +2,9 @@ public class main {
     public static void main (String[] args) {
 
         int[] arrOne = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
-        for (int i = 0; i < arrOne.length; i++) {
-            arrOne[i] = arrOne[i] == 1 ? 0 : 1;
-            System.out.print(arrOne[i] + " ");
-        }
+
+
+
 
         System.out.print("\n");
         int[] arrTwo = new int[8];
