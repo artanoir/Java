@@ -1,14 +1,14 @@
 public class main {
     public static void main (String[] args) {
 
-        int[] one = {1, 1, 0, 0, 0, 1, 1, 1, 0, 1};
-        for (int i = 0; i < one.length; i++) {
-            if (one[i] == 1) {
-                one[i] = 0;
+        int[] arrOne = {1, 1, 0, 0, 0, 1, 1, 1, 0, 1};
+        for (int i = 0; i < arrOne.length; i++) {
+            if (arrOne[i] == 1) {
+                arrOne[i] = 0;
             } else {
-                one[i] = 1;
+                arrOne[i] = 1;
             }
-            System.out.print(one[i] + " ");
+            System.out.print(arrOne[i] + " ");
         }
 
         System.out.print("\n");
