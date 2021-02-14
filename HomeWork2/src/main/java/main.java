@@ -1,15 +1,16 @@
+import java.util.Arrays;
+
 public class main {
     public static void main (String[] args) {
 
         int[] arrOne = {1, 1, 0, 0, 0, 1, 1, 1, 0, 1};
-        for (int i = 0; i < arrOne.length; i++) {
-            if (arrOne[i] == 1) {
-                arrOne[i] = 0;
-            } else {
-                arrOne[i] = 1;
-            }
-            System.out.print(arrOne[i] + " ");
+        for (int i = 0; i < arrOne.length; i++){
+            arrOne[i] = (arrOne[i] - 1) * -1;
         }
+        for (int i = 0; i < arrOne.length; i++) {
+            System.out.print(arrOne[1]+" ");
+        }
+
 
         System.out.print("\n");
         int[] arrTwo = new int[8];
@@ -52,8 +53,6 @@ public class main {
 
         int[] arrSix = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         System.out.println("\r\nQuestion Six = " + checkBalance(arrSix));
-        System.out.println("\r\n shift +3"); shift(arrSix, +3);
-        System.out.println("\r\n shift -3"); shift(arrSix, -5);
 
     }
 
@@ -72,27 +71,4 @@ public class main {
         }
         return false;
     }
-    private static void shift(int[] arrPref, int n) {
-        for (int i : arrPref) System.out.print(i + " ");
-        System.out.println("\r\n");
-        if (n > 0) {
-            for (int x = 0; x < n; x++) {
-                int addShift = arrPref[arrPref.length - 1];
-                System.arraycopy(arrPref, 0, arrPref, 1, arrPref.length - 1);
-                arrPref[0] = addShift;
-                for (int i : arrPref) System.out.print(i + " ");
-                System.out.println();
-            }
-        }
-        if (n < 0) {
-            for (int x = 0; x > n; x--) {
-                int addShift = arrPref[0];
-                System.arraycopy(arrPref, 1, arrPref, 0, arrPref.length - 1);
-                arrPref[arrPref.length - 1] = addShift;
-                for (int i : arrPref) System.out.print(i + " ");
-                System.out.print("\r\n");
-            }
-        }
-    }
-
 }
