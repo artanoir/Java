@@ -4,18 +4,18 @@ public class main {
     public static void main (String[] args) {
 
         int[] arrOne = {1, 1, 0, 0, 0, 1, 1, 1, 0, 1};
-        for (int i = 0; i < arrOne.length; i++){
+        for (int i = 0; i < arrOne.length; i++) {
             arrOne[i] = (arrOne[i] - 1) * -1;
         }
         for (int i = 0; i < arrOne.length; i++) {
-            System.out.print(arrOne[1]+" ");
+            System.out.print(arrOne[1] + " ");
         }
-
 
         System.out.print("\n");
         int[] arrTwo = new int[8];
         for (int i = 1, j = 0; i < arrTwo.length; i++) arrTwo[i] = j += 3;
         for (int x : arrTwo) System.out.print(x + " ");
+
 
         System.out.print("\n");
         int[] arrThree = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
