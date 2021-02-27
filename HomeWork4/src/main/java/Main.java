@@ -1,138 +1,143 @@
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
 
-    private static char [][] map;
-    private static final int SIZE = 3;
-    private static final char EMPTY_DOT = '•';
-    private static final char X_DOT = 'X';
-    private static final char O_DOT = 'O';
-    private static Scanner sc;
+    private static int size_X = 5;
+    private static int size_Y = 5;
+    private static char empty_DOT = '.';
+    private static char player_DOT = 'X';
+    private static char comp_DOT = '0';
+    private static int to_WIN = 4;
 
+    private static Scanner scanner;
+    private static char[][] map = new char[size_Y][size_X];
 
     public static void main(String[] args) {
+        initField();
+        printField();
 
-        initMap();
-        printMap();
-        while (true) {
-            humanTurn();
-            printMap();
+        while (true){
+            playerStep();
+            printField();
             System.out.println();
-            if (checkWin(X_DOT)) {
-                System.out.println("You win");
+            if (checkWin(player_DOT)){
+                System.out.println("YOU WIN");
                 break;
             }
-            if (checkDraw()) {
-                System.out.println("Draw");
+            if (checkDraw()){
+                System.out.println("THE END (Нет свободных ходов)");
                 break;
             }
-            computerTurn();
-            printMap();
+            compStep();
+            printField();
             System.out.println();
-            if (checkWin(O_DOT)) {
-                System.out.println("You lose");
+            if (checkWin(comp_DOT)){
+                System.out.println("YOU LOSE");
                 break;
             }
-            if (checkDraw()) {
-                System.out.println("Draw");
+            if (checkDraw()){
+                System.out.println("THE END (Нет свободных ходов)");
                 break;
             }
             try {
-                Thread.sleep(500);
-            } catch (InterruptedException ignored) {
+                Thread.sleep(700);
+            }catch (InterruptedException ignored){
+            }
+
+        }
+
+
+
+    }
+    private static void initField(){
+        scanner = new Scanner(System.in);
+        for (int i = 0; i < size_Y; i++){
+            for (int j = 0; j < size_X; j++){
+                map[i][j] = empty_DOT;
             }
         }
     }
+    private static void printField() {
+        for (int i = 0; i < size_Y; i++) {
+            System.out.print("|");
+            for (int j = 0; j < size_X; j++) {
+                System.out.print(map[i][j] + "|");
+            }
+            System.out.println();
+        }
 
+    }
+    private static void playerStep(){
+        int x = -1;
+        int y = -1;
+        do{
+            System.out.println("Введите координаты: Столбец № (от 1 до " + size_X + ")");
+            if (scanner.hasNext()){
+                x = scanner.nextInt() - 1;
+            }
+            System.out.println("Введите координаты: Строка № (от 1 до " + size_Y + ")");
+            if (scanner.hasNext()) {
+                y = scanner.nextInt() - 1;
+            }
+            scanner.nextLine();
+        }while (!isValid(y, x));
+        isChar(y, x, player_DOT);
+
+    }
+    private static boolean isValid (int x, int y){
+        if (x < 0 || y < 0 || x > size_X || y > size_Y) {
+            return false;
+        }
+        return map[x][y] == empty_DOT;
+
+    }
+    private static void compStep(){
+        Random random = new Random();
+        int x;
+        int y;
+        do{
+            x = random.nextInt(size_X);
+            y = random.nextInt(size_Y);
+        }while (!isValid(y, x));
+        isChar(y, x, comp_DOT);
+
+    }
     private static boolean checkDraw() {
-        for (char[] chars : map) {
-            for (char aChar : chars) {
-                if (aChar == EMPTY_DOT) {
+        for (int i = 0; i < size_Y; i++) {
+            for (int j = 0; j < size_X; j++) {
+                if (map[i][j] == empty_DOT){
                     return false;
                 }
             }
         }
         return true;
+
+    }
+    private static void isChar(int y, int x, char sym){
+        map[y][x] = sym;
     }
 
-    private static boolean checkWin(char c) {
-        if(map[0][0] == c && map[0][1] == c && map[0][2] == c) {
-            return true;
-        }
-        if(map[1][0] == c && map[1][1] == c && map[1][2] == c) {
-            return true;
-        }
-        if(map[2][0] == c && map[2][1] == c && map[2][2] == c) {
-            return true;
-        }
-        if(map[0][0] == c && map[1][0] == c && map[2][0] == c) {
-            return true;
-        }
-        if(map[0][1] == c && map[1][1] == c && map[2][1] == c) {
-            return true;
-        }
-        if(map[0][2] == c && map[1][2] == c && map[2][2] == c) {
-            return true;
-        }
-        if(map[0][0] == c && map[1][1] == c && map[2][2] == c) {
-            return true;
-        }
-        if(map[2][0] == c && map[1][1] == c && map[0][2] == c) {
-            return true;
+    private static boolean checkWin(char dot) {
+        for (int i = 0; i < size_Y; i++) {
+            for (int j = 0; j < size_X; j++) {
+                if (checkLine(i, j, 0, 1,  dot)) return true;
+                if (checkLine(i, j, 1, 1,  dot)) return true;
+                if (checkLine(i, j, 1, 0,  dot)) return true;
+                if (checkLine(i, j, -1, 1, dot)) return true;
+            }
         }
         return false;
     }
-
-    private static void computerTurn() {
-        int xCoordinate;
-        int yCoordinate;
-        do {
-            Random random = new Random();
-            xCoordinate = random.nextInt(SIZE);
-            yCoordinate = random.nextInt(SIZE);
-        } while (!isValidCell(xCoordinate, yCoordinate));
-        map[yCoordinate][xCoordinate] = O_DOT;
-    }
-
-    private static void humanTurn() {
-        int xCoordinate = -1;
-        int yCoordinate = -1;
-        do {
-            System.out.println("Введите координаты в формате x y");
-            if (sc.hasNextInt()) {
-                xCoordinate = sc.nextInt() - 1;
-            }
-            if (sc.hasNextInt()) {
-                yCoordinate = sc.nextInt() - 1;
-            }
-            sc.nextLine();
-        } while (!isValidCell(xCoordinate, yCoordinate));
-        map[yCoordinate][xCoordinate] = X_DOT;
-    }
-
-    private static boolean isValidCell(int x, int y) {
-        if (x < 0 || y < 0 || x > map.length - 1 || y > map.length - 1) {
-            return false;
+    private static boolean checkLine(int y, int x, int dy, int dx, char sym){
+        int wayX = x + (to_WIN - 1) * dx;
+        int wayY = y + (to_WIN - 1) * dy;
+        if (wayX < 0 || wayY < 0 || wayX > size_X - 1 || wayY > size_Y - 1) return false;
+        for (int i = 0; i < to_WIN; i++) {
+            int itemY = y + i * dy;
+            int itemX = x + i * dx;
+            if (map[itemY][itemX] != sym) return false;
         }
-        return map[y][x] == EMPTY_DOT;
-    }
-
-    private static void printMap() {
-        for (char[] chars : map) {
-            for (char aChar : chars) {
-                System.out.print(aChar + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    private static void initMap() {
-        sc = new Scanner(System.in);
-        map = new char[SIZE][SIZE];
-        for (char[] chars : map) {
-            Arrays.fill(chars, EMPTY_DOT);
-        }
+        return true;
     }
 }
