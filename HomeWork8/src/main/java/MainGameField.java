@@ -9,7 +9,7 @@ public class MainGameField extends JPanel {
     public static final int FIELD_SIZE = 450;
     public final String NOT_SIGN = "*";
     boolean gameOver = false;
-    String gameOverMessage = "Game Over!";
+    String gameOverMessage = "";
     static int linesCount = 3;
     int cellSize;
     int x;
@@ -29,7 +29,7 @@ public class MainGameField extends JPanel {
 
     void startNewGame() {
         gameOver = false;
-        gameOverMessage = "Game Over!";
+        gameOverMessage = "";
         cellSize = FIELD_SIZE / linesCount;
         cell = new String[linesCount][linesCount];
         repaint();
